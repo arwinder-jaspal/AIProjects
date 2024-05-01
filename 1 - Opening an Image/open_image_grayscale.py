@@ -2,7 +2,7 @@
 import cv2
 
 # open an image
-img = cv2.imread("test_image.jpg")
+img = cv2.imread("../stock_images/pexels-joerg-hartmann-626385254-17815054.jpg")
 
 # convert from BGR to grayscale
 img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
