@@ -12,6 +12,8 @@ img = cv2.imread("../stock_images/resized_img.jpg",0)
 
 # apply binary thresholding
 threshold_img = cv2.threshold(img, 180, 255, cv2.THRESH_BINARY)[1]
+# [0] - returns threshold value
+# [1] - returns image
 
 # display images
 cv2.imshow("Grayscale", img)
