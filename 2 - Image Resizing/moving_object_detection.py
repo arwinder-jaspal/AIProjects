@@ -5,6 +5,8 @@ import imutils
 # open camera capture
 cap = cv2.VideoCapture(0)
 
+first_frame = None
+
 while True:
     ret, frame = cap.read()
     # resize frame
@@ -14,6 +16,11 @@ while True:
 
     # apply gaussian blur to smoothen image
     gaussian_blur_img = cv2.GaussianBlur(frame_gray, (21, 21),0)
+
+    # if the first frame is not assigned, assign the gaussian blurred image
+    if first_frame is None:
+        first_frame = gaussian_blur_img
+        continue
 
     # display camera feed
     cv2.imshow("Live Feed", frame)
