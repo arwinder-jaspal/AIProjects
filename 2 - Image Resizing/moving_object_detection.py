@@ -10,7 +10,7 @@ first_frame = None
 while True:
     ret, frame = cap.read()
     # resize frame
-    frame = imutils.resize(1000)
+    frame = imutils.resize(frame, 1000)
     # convert image to grayscale
     frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
@@ -38,7 +38,7 @@ while True:
 
 
     # display camera feed
-        cv2.imshow("Live Feed", frame)
+    cv2.imshow("Live Feed", frame)
 
     if cv2.waitKey(1) & 0xff == ord('q'):
         break
