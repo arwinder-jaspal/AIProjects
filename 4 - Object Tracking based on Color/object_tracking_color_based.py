@@ -21,3 +21,18 @@ while True:
 
     # convert color to HSV
     hsv_image = cv2.cvtColor(gaussian_blur_img, cv2.COLOR_BGR2HSV)
+
+    # Detect the object based on HSV Range Values
+    mask = cv2.inRange(hsv_image, hsv_lower, hsv_upper)
+
+    # Erode away the boundaries of the foreground object, diminish the features of image
+    # It is useful for removing small white noises, detach two connected object
+    mask = cv2.erode(mask, None, iterations=2)
+
+    # Dilation
+    # increases the object area, used to accentuate feature
+    # In cases like noise removal, erosion is followed by dilation.
+    # Because, erosion removes white noises, but it also shrinks our object.
+    # So we dilate it. Since noise is gone, they won’t come back, but our object area increases.
+    # It is also useful in joining broken parts of an object.
+    mask = cv2.dilate(mask, None, iterations=2)
