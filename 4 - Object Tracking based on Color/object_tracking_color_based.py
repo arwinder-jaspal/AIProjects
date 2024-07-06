@@ -6,7 +6,7 @@ hsv_lower = (0, 129, 155)
 hsv_upper = (30, 255, 240)
 
 # initialize video capture
-cap = cv2.VideoCapture(6)
+cap = cv2.VideoCapture(0)
 
 
 while True:
@@ -36,3 +36,22 @@ while True:
     # So we dilate it. Since noise is gone, they won’t come back, but our object area increases.
     # It is also useful in joining broken parts of an object.
     mask = cv2.dilate(mask, None, iterations=2)
+
+    # get contours of the mask
+    contours = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,
+                                cv2.CHAIN_APPROX_SIMPLE)[-2]
+
+    center = None
+
+    if len(contours):
+        # get the contour with largest area
+        max_area_contour = max(contours, key=cv2.contourArea)
+        # get the center and radius of min enclosing circle for the larger area contour
+        ((x, y), radius) = cv2.minEnclosingCircle(max_area_contour)
+        # calculate image moment
+        image_moment = cv2.moments(max_area_contour)
+        # get centroid of the detect max_area_contour
+        # The central moment m10 represents the x-coordinate of the centroid,
+        # and m01 represents the y-coordinate of the centroid.
+        centroid = (int(image_moment["m10"] / image_moment["m00"]),
+                  int(image_moment["m01"] / image_moment["m00"]))
