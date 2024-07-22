@@ -54,4 +54,32 @@ while True:
         # The central moment m10 represents the x-coordinate of the centroid,
         # and m01 represents the y-coordinate of the centroid.
         centroid = (int(image_moment["m10"] / image_moment["m00"]),
-                  int(image_moment["m01"] / image_moment["m00"]))
+                    int(image_moment["m01"] / image_moment["m00"]))
+
+        # if the radius exceed 10, we consider the color is reliably detected
+        if radius > 10:
+            # draw a yellow circle to enclose the object with the matching color
+            cv2.circle(frame, (int(x), int(y)), int(radius), (0,255, 255), 2)
+            # draw a red dot to highlight the centroid
+            cv2.circle(frame, centroid, 5, (0, 0, 255, 2))
+
+            # if the radius is too large, the object is too close
+            if radius > 250:
+                print("Stop Moving")
+            else:
+                # if the centroid is too far to the left
+                if centroid[0] < 150:
+                    print("Move Right")
+                # if the centroid is too far to the right
+                elif centroid[0] > 450:
+                    print("Move Left")
+                # if the object is not too near
+                elif radius < 250:
+                    print("Move Forward")
+
+    cv2.imshow("Stream", frame)
+    if cv2.waitKey(1) & 0xff == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
