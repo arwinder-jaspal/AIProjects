@@ -17,7 +17,7 @@ while num_captured < 50:
     # convert each frame to grayscale
     frame_grayscale = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # get the coordinates of the face
-    face_coordinates = face_cascade.detectMultiScale(q, 1.3, 4)
+    face_coordinates = face_cascade.detectMultiScale(frame_grayscale, 1.3, 4)
     # draw a bounding box around the detected face
     for (x, y, w, h) in face_coordinates:
         cv2.rectangle(frame, (x,y), (x+w, y+h), (0, 0 ,255), 2)
