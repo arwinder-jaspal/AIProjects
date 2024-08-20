@@ -1,11 +1,11 @@
-import cv2, numpy, os, datetime
+import cv2, os, datetime
 
 # we will start by training the model
 haar_file = "haarcascade_frontalface_default.xml"
 dataset_dir = "datasets"
 (width, height) = (100, 130)
 
-# images are the images inside the each sub directory in dataset_dir
+# images are the images inside each sub-directory in dataset_dir
 # label is the index of the subdir inside dataset_dir
 # names is the mapping (using dict) of the label and the name of the subdir
 # id is current index of the subdir
