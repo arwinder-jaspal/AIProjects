@@ -1,6 +1,4 @@
 # import libraries
-from pickletools import uint8
-
 from facial_emotion_recognition import EmotionRecognition
 import urllib.request
 import cv2
