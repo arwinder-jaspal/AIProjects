@@ -5,3 +5,8 @@ imutils
 scipy
 seaborn
 pyautogui
+torch
+torchvision
+tensorflow
+keras
+numpy
