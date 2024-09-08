@@ -6,14 +6,13 @@ from numpy import loadtxt
 from keras.api.models import Sequential
 from keras.api.layers import Dense, Input
 
-# import tensorflow as tf
-# tf.config.list_physical_devices('GPU')
-
-# print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
 # load the dataset
 dataset = loadtxt('pima-indians-diabetes.csv', delimiter=',')
 
 # split into input (X) and output (y) variables
+# only use first 70% of dataset for training
+train_size = int(len(dataset) * 0.7)
+dataset = dataset[:train_size]
 X = dataset[:, 0:8]
 y = dataset[:, 8]
 
