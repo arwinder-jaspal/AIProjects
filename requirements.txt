@@ -5,3 +5,6 @@ imutils
 scipy
 seaborn
 pyautogui
+torch
+torchvision
+facial-emotion-recognition
