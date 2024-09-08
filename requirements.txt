@@ -8,3 +8,6 @@ pyautogui
 torch
 torchvision
 facial-emotion-recognition
+tensorflow
+keras
+numpy
