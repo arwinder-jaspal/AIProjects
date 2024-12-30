@@ -5,7 +5,6 @@ from keras.api.layers import Flatten
 from keras.api.layers import Dense
 from keras._tf_keras.keras.preprocessing.image import ImageDataGenerator
 
-# import tensorflow as tf
 
 # Part 1 Initialising the CNN
 classifier = Sequential()
@@ -48,7 +47,7 @@ classifier.fit(training_set,
     steps_per_epoch = 100,
     epochs = 50,
     validation_data = validation_datagen_set,
-    validation_steps = 2)
+    validation_steps = 100)
 
 # save model as h5 and json
 print("Saving Model")
