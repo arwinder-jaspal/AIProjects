@@ -11,3 +11,4 @@ facial-emotion-recognition
 tensorflow
 keras
 numpy
+icrawler
