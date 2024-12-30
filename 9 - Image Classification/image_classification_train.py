@@ -25,3 +25,34 @@ classifier.add(Dense(units = 1, activation = 'sigmoid'))
 
 # Compiling the CNN
 classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])    
+
+# Part 2 - Fitting the CNN to the images
+train_datagen = ImageDataGenerator(rescale = 1./255,
+    shear_range = 0.2,
+    zoom_range = 0.2,
+    horizontal_flip = True)
+
+validation_datagen = ImageDataGenerator(rescale = 1./255)
+
+training_set = train_datagen.flow_from_directory('dataset/train',
+                  target_size = (64, 64),
+                  batch_size = 8,
+                  class_mode = 'binary')
+print(validation_datagen)
+validation_datagen_set = validation_datagen.flow_from_directory('dataset/test',
+             target_size = (64, 64),
+             batch_size = 8,
+             class_mode = 'binary')
+
+classifier.fit(training_set,
+    steps_per_epoch = 10,
+    epochs = 50,
+    validation_data = validation_datagen_set,
+    validation_steps = 2)
+
+# save model as h5 and json
+print("Saving Model")
+classifier.save_weights('model.weights.h5')
+model_json = classifier.to_json()
+with open("model.json", "w") as json_file:
+    json_file.write(model_json)
