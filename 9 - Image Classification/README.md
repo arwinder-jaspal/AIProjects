@@ -126,4 +126,4 @@ Predicted [image_path] as [Thanos/Joker]
 
 ## Demo
 
-![Demo](docs/demo.mp4)
+![Demo](docs/demo.gif)
