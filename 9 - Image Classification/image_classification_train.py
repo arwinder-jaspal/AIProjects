@@ -39,13 +39,13 @@ training_set = train_datagen.flow_from_directory('dataset/train',
                   batch_size = 8,
                   class_mode = 'binary')
 print(validation_datagen)
-validation_datagen_set = validation_datagen.flow_from_directory('dataset/test',
+validation_datagen_set = validation_datagen.flow_from_directory('dataset/val',
              target_size = (64, 64),
              batch_size = 8,
              class_mode = 'binary')
 
 classifier.fit(training_set,
-    steps_per_epoch = 10,
+    steps_per_epoch = 100,
     epochs = 50,
     validation_data = validation_datagen_set,
     validation_steps = 2)
