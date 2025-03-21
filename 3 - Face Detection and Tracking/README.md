@@ -1,5 +1,3 @@
-Certainly! Here's a README in markdown format for the face detection code you provided:
-
 ## Face Detection using OpenCV
 
 This Python script demonstrates real-time face detection using OpenCV and the Haar Cascade classifier.
